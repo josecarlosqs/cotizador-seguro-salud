@@ -1,0 +1,36 @@
+.app{
+  &__sidebar{
+    height: 100%;
+    display: block;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: #{1028 * 100 / 1920} + '%';
+    height: 90%;
+  }
+  &__content{
+    height: 100%;
+    display: block;
+    position: relative;
+    width: #{892 * 100 / 1920} + '%';
+    margin: 0 0 0 auto;
+  }
+
+  &.app--insurance-form{
+    &__sidebar{
+      width: #{531 * 100 / 1920} + '%';
+    }
+    &__content{
+      width: #{1389 * 100 / 1920} + '%';
+    }
+  }
+
+  &.app--thankyou{
+    &__sidebar{
+      width: #{568 * 100 / 1920} + '%';
+    }
+    &__content{
+      width: #{1352 * 100 / 1920} + '%';
+    }
+  }
+}
