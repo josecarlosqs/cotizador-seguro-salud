@@ -2,9 +2,9 @@ import React from 'react';
 
 function App() {
   return (
-    <div className="app">
-      <div className="app__sidebar">abc</div>
-      <div className="app__content">
+    <div className="layout">
+      <div className="layout__sidebar">abc</div>
+      <div className="layout__content">
         abc
         <br/>
         <br/>

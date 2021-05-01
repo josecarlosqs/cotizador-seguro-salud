@@ -1,4 +1,4 @@
-.app{
+.layout{
   &__sidebar{
     height: 100%;
     display: block;
@@ -16,7 +16,7 @@
     margin: 0 0 0 auto;
   }
 
-  &.app--insurance-form{
+  &.layout--insurance-form{
     &__sidebar{
       width: #{531 * 100 / 1920} + '%';
     }
@@ -25,7 +25,7 @@
     }
   }
 
-  &.app--thankyou{
+  &.layout--thankyou{
     &__sidebar{
       width: #{568 * 100 / 1920} + '%';
     }
