@@ -1,35 +1,64 @@
 .layout{
+  $self: &;
+  
   &__sidebar{
     height: 100%;
     display: block;
     position: fixed;
+    z-index: 1;
     top: 0;
     left: 0;
-    width: #{1028 * 100 / 1920} + '%';
-    height: 90%;
+    transition: width 0.2s;
+
+    &:before{
+      content: '';
+      z-index: -1;
+      display: block;
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      background-color: $blue;
+      border-bottom-right-radius: 7rem;
+      transform-origin: top right;
+      transform: skewX(-1.872deg);
+    }
   }
+
   &__content{
     height: 100%;
     display: block;
     position: relative;
-    width: #{892 * 100 / 1920} + '%';
+    z-index: 2;
     margin: 0 0 0 auto;
+    transition: width 0.2s;
   }
 
-  &.layout--insurance-form{
-    &__sidebar{
-      width: #{531 * 100 / 1920} + '%';
+  &#{$self}--home-page{
+    #{$self}__sidebar{
+      width: #{1028 * 100 / 1920} + '%';
+      height: 90%;
     }
-    &__content{
+    #{$self}__content{
+      width: #{892 * 100 / 1920} + '%';
+    }
+  }
+
+  &#{$self}--insurance-form-page{
+    #{$self}__sidebar{
+      width: #{531 * 100 / 1920} + '%';
+      height: 100%;
+    }
+    #{$self}__content{
       width: #{1389 * 100 / 1920} + '%';
     }
   }
 
-  &.layout--thankyou{
-    &__sidebar{
+  &#{$self}--thankyou-page{
+    #{$self}__sidebar{
       width: #{568 * 100 / 1920} + '%';
+      height: 100%;
     }
-    &__content{
+    #{$self}__content{
       width: #{1352 * 100 / 1920} + '%';
     }
   }
