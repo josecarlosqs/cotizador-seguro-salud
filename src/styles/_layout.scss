@@ -1,14 +1,13 @@
 .layout{
   $self: &;
-  
+
   &__sidebar{
-    height: 100%;
     display: block;
     position: fixed;
     z-index: 1;
     top: 0;
     left: 0;
-    transition: width 0.2s;
+    transition: width 0.2s, height 0.2s;
 
     &:before{
       content: '';
@@ -31,15 +30,26 @@
     z-index: 2;
     margin: 0 0 0 auto;
     transition: width 0.2s;
+    padding: 0 1rem;
+
+    .container{
+      position: relative;
+      margin: auto;
+      width: 100%;
+    }
   }
 
   &#{$self}--home-page{
     #{$self}__sidebar{
       width: #{1028 * 100 / 1920} + '%';
-      height: 90%;
+      height: auto;
     }
     #{$self}__content{
       width: #{892 * 100 / 1920} + '%';
+      .container{
+        margin-top: 146px;
+        max-width: 407px;
+      }
     }
   }
 
@@ -50,6 +60,10 @@
     }
     #{$self}__content{
       width: #{1389 * 100 / 1920} + '%';
+      .container{
+        margin-top: 90px;
+        max-width: 674px;
+      }
     }
   }
 
@@ -60,6 +74,9 @@
     }
     #{$self}__content{
       width: #{1352 * 100 / 1920} + '%';
+      .container{
+        max-width: 640px;
+      }
     }
   }
 }
