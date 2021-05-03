@@ -43,32 +43,45 @@ const initialState: IPersonalInfoState = {
 export default function personalInfoReducer(state: IPersonalInfoState = initialState, action: AnyAction) {
   switch (action.type) {
     case 'personalInfo/startLoadingInfo':
-      state.meta.loading = true;
-      return state;
+      return {
+        ...initialState,
+        meta: {
+          loading: true,
+          done: false,
+          error: false
+        }
+      }
 
     case 'personalInfo/doneLoadingInfo':
-      state.meta.loading = false;
-      state.meta.error = false;
-      state.meta.done = true;
-
       const personalData: IPersonalInfo = action.payload;
 
-      state.documentNumber = personalData.documentNumber;
-      state.documentType = personalData.documentType;
-      state.birthday = personalData.birthday;
-      state.cellphone = personalData.cellphone;
-      state.firstName = personalData.firstName;
-      state.lastNamePat = personalData.lastNamePat;
-      state.lastNameMat = personalData.lastNameMat;
-      state.acceptedTyc = personalData.acceptedTyc;
-      state.acceptedMkt = personalData.acceptedMkt;
-      return state;
+      return {
+        ...state,
+        meta: {
+          loading: false,
+          done: true,
+          error: false
+        },
+        documentNumber: personalData.documentNumber,
+        documentType: personalData.documentType,
+        birthday: personalData.birthday,
+        cellphone: personalData.cellphone,
+        firstName: personalData.firstName,
+        lastNamePat: personalData.lastNamePat,
+        lastNameMat: personalData.lastNameMat,
+        acceptedTyc: personalData.acceptedTyc,
+        acceptedMkt: personalData.acceptedMkt
+      }
 
     case 'personalInfo/errorLoadingInfo':
-      state.meta.error = true;
-      state.meta.done = false;
-      state.meta.loading = false;
-      return state;
+      return {
+        ...initialState,
+        meta: {
+          loading: false,
+          done: false,
+          error: true
+        }
+      }
 
     default:
       return state
