@@ -3,7 +3,7 @@ import IListOption from '../../interfaces/IListOption'
 import IPersonalInfo from '../../interfaces/IPersonalInfo'
 import { AnyAction } from 'redux'
 
-interface PersonalInfo extends IPersonalInfo {
+interface IPersonalInfoState extends IPersonalInfo {
   meta: IStateMeta,
   extra: {
     documentTypeList: Array<IListOption>,
@@ -11,7 +11,7 @@ interface PersonalInfo extends IPersonalInfo {
   }
 }
 
-const initialState: PersonalInfo = {
+const initialState: IPersonalInfoState = {
   meta: {
     loading: false,
     done: false,
@@ -40,7 +40,7 @@ const initialState: PersonalInfo = {
   acceptedMkt: null
 }
 
-export default function personalInfoReducer(state: PersonalInfo = initialState, action: AnyAction) {
+export default function personalInfoReducer(state: IPersonalInfoState = initialState, action: AnyAction) {
   switch (action.type) {
     case 'personalInfo/startLoadingInfo':
       state.meta.loading = true;
