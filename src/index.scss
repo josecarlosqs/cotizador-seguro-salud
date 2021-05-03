@@ -1,8 +1,8 @@
 @import '~minireset.css/minireset.sass';
 
-*, *:before, *:after{
-  box-sizing: border-box;
-}
-
 @import 'styles/vars';
+@import 'styles/lnf';
 @import 'styles/layout';
+@import 'styles/pages';
+
+@import 'styles/utils/text';

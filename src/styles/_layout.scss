@@ -42,7 +42,7 @@
   &#{$self}--home-page{
     #{$self}__sidebar{
       width: #{1028 * 100 / 1920} + '%';
-      height: auto;
+      height: 90%;
     }
     #{$self}__content{
       width: #{892 * 100 / 1920} + '%';

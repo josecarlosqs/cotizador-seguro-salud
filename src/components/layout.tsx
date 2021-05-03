@@ -2,34 +2,10 @@ import React from 'react';
 
 import {
   Link,
-  Switch,
-  Route,
   useLocation
 } from "react-router-dom";
 
-function Home() {
-  return (
-    <div>
-      <h2>Home</h2>
-    </div>
-  );
-}
-
-function About() {
-  return (
-    <div>
-      <h2>About</h2>
-    </div>
-  );
-}
-
-function Dashboard() {
-  return (
-    <div>
-      <h2>Dashboard</h2>
-    </div>
-  );
-}
+import Routes from './routes'
 
 function Layout(){
   
@@ -39,9 +15,9 @@ function Layout(){
 
   React.useEffect(() => {
     switch(location.pathname){
-      case '/about': setLayoutClassname('layout layout--insurance-form-page'); break;
-      case '/dashboard': setLayoutClassname('layout layout--thankyou-page'); break;
-      default: setLayoutClassname('layout layout--home-page'); break;
+      case '/': setLayoutClassname('layout layout--home-page'); break;
+      case '/gracias': setLayoutClassname('layout layout--thankyou-page'); break;
+      default: setLayoutClassname('layout layout--insurance-form-page'); break;
     }
   }, [ location ])
 
@@ -52,26 +28,19 @@ function Layout(){
           <Link to="/">Home</Link>
         </li>
         <li>
-          <Link to="/about">About</Link>
+          <Link to="/datos-personales">Datos personales</Link>
         </li>
         <li>
-          <Link to="/dashboard">Dashboard</Link>
+          <Link to="/elige-seguro">Elige tu seguro</Link>
+        </li>
+        <li>
+          <Link to="/gracias">Gracias</Link>
         </li>
       </ul>
     </div>
     <div className="layout__content">
-      <div className="container">
-        <Switch>
-          <Route exact path="/">
-            <Home />
-          </Route>
-          <Route path="/about">
-            <About />
-          </Route>
-          <Route path="/dashboard">
-            <Dashboard />
-          </Route>
-        </Switch>
+      <div className="container page">
+        <Routes />
       </div>
     </div>
   </div>
