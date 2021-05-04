@@ -1,8 +1,53 @@
-import { useState, SyntheticEvent  } from 'react';
+import { useState, SyntheticEvent, useRef, useEffect } from 'react';
 import PropTypes, { InferProps } from "prop-types";
 import IListOption from '../interfaces/IListOption';
+import flatpickr from "flatpickr";
+import { Spanish } from "flatpickr/dist/l10n/es.js"
 
-export function TextInput({placeholder, type, name, isPrepend}: InferProps<typeof TextInput.propTypes>){
+export function DateInput({placeholder, name, isPrepend}: InferProps<typeof DateInput.propTypes>){
+  const input = useRef<HTMLInputElement>(null);
+
+  let fieldInputClassName = 'field__input';
+
+  if(!placeholder){
+    fieldInputClassName += ' field__input--no-placeholder';
+  }
+
+  if(isPrepend){
+    fieldInputClassName += ' field__input--prepend';
+  }
+
+  useEffect(() => {
+    if( input.current !== null && !(input.current as any)._flatpickr ){
+      let _input = input.current;
+      flatpickr(_input, {
+        "locale": Spanish,
+        altFormat: 'd m Y',
+        altInput: true,
+        onChange: function(selectedDates, dateStr, instance) {
+          (instance.altInput as HTMLInputElement).className += " filled";
+        },
+      });
+    }
+  }, [])
+
+  return <label className={fieldInputClassName}>
+    <input type="text" ref={input} name={name} />
+    {placeholder && <div className="field__placeholder"><span>{ placeholder }</span></div>}
+  </label> 
+}
+
+DateInput.propTypes = {
+  placeholder: PropTypes.string,
+  name: PropTypes.string.isRequired,
+  isPrepend: PropTypes.bool.isRequired
+};
+
+DateInput.defaultProps = {
+  isPrepend: false
+};
+
+export function TextInput({placeholder, type, name, isPrepend, nativeInputProps}: InferProps<typeof TextInput.propTypes>){
 
   const [isFilled, setIsFilled] = useState(false);
 
@@ -30,7 +75,7 @@ export function TextInput({placeholder, type, name, isPrepend}: InferProps<typeo
   }
 
   return <label className={fieldInputClassName}>
-    <input type={type} name={name} className={inputClassName} onFocus={handleFocus} onBlur={handleBlur} />
+    <input type={type} {...nativeInputProps} name={name} className={inputClassName} onFocus={handleFocus} onBlur={handleBlur} />
     {placeholder && <div className="field__placeholder"><span>{ placeholder }</span></div>}
   </label> 
 }
@@ -39,12 +84,14 @@ TextInput.propTypes = {
   placeholder: PropTypes.string,
   type: PropTypes.string.isRequired,  
   name: PropTypes.string.isRequired,
-  isPrepend: PropTypes.bool.isRequired
+  isPrepend: PropTypes.bool.isRequired,
+  nativeInputProps: PropTypes.object
 };
 
 TextInput.defaultProps = {
   type: 'text',
-  isPrepend: false
+  isPrepend: false,
+  nativeInputProps: {}
 };
 
 interface ISelectInputProps{
@@ -68,7 +115,7 @@ export function SelectInput({placeholder, options, name, isPrepend}: ISelectInpu
 
   return <label className={fieldInputClassName}>
     <select name={name}>
-      { options.map(option => <option value={ option.value }>{ option.label }</option>) }
+      { options.map(option => <option value={ option.value } key={ option.value }>{ option.label }</option>) }
     </select>
     {placeholder && <div className="field__placeholder"><span>{ placeholder }</span></div>}
   </label>
@@ -88,23 +135,11 @@ SelectInput.defaultProps = {
 };
 
 
-// function Field({input, prepend}: InferProps<typeof Field.propTypes>){
 function Field({input, prepend}: any){
   return <div className="field">
     {prepend}
     {input}
   </div>
 }
-
-// Field.propTypes = {
-//   input: PropTypes.oneOfType([
-//     PropTypes.instanceOf(TextInput),
-//     PropTypes.instanceOf(SelectInput)
-//   ]).isRequired,
-//   prepend: PropTypes.oneOfType([
-//     PropTypes.instanceOf(TextInput),
-//     PropTypes.instanceOf(SelectInput)
-//   ])
-// };
 
 export default Field;
