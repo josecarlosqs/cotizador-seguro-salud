@@ -2,7 +2,7 @@ import {
   useSelector
 } from 'react-redux'
 
-import Field, {SelectInput, TextInput, DateInput} from '../field'
+import {Field, CheckboxField, SelectInput, TextInput, DateInput} from '../field'
 
 function HomeScreen (){
   const optionLists = useSelector(store => (store as any).personalInfo.extra);
@@ -27,6 +27,14 @@ function HomeScreen (){
         <Field
           input={ <TextInput type="number" placeholder="Celular" name="cellphone" nativeInputProps={{min: 900000000, max: 999999999}}/> }
         />
+
+        <CheckboxField name="tyc" className="text--grey">
+          Acepto la <a className="text--grey" href="https://www.termsandcondiitionssample.com/" rel="noreferrer" target="_blank">Política de Protección de Datos Personales y los Términos y Condiciones.</a>
+        </CheckboxField>
+
+        <CheckboxField name="marketing" className="text--grey">
+          Acepto la <a className="text--grey" href="https://www.termsandcondiitionssample.com/" rel="noreferrer" target="_blank">Política de Envío de Comunicaciones Comerciales.</a>
+        </CheckboxField>
 
       </form>
     </div>
