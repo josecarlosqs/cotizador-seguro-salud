@@ -2,7 +2,7 @@ import {
   useSelector
 } from 'react-redux'
 
-import Field, {SelectInput, TextInput} from '../field'
+import Field, {SelectInput, TextInput, DateInput} from '../field'
 
 function HomeScreen (){
   const optionLists = useSelector(store => (store as any).personalInfo.extra);
@@ -20,42 +20,14 @@ function HomeScreen (){
           prepend={ <SelectInput isPrepend options={optionLists.documentTypeList} name="documentType"/> }
         />
 
-        {/* <div className="field">
-          <label className="field__input">
-            <div className="field__placeholder"></div>
-            <input type="text"/>
-          </label>
-        </div>
+        <Field
+          input={ <DateInput placeholder="Fecha de nacimiento" name="birthday" /> } />
 
-        <div className="field">
-          <label className="field__input">
-            <div className="field__placeholder"></div>
-            <select>
-              <option></option>
-              <option value="1">1111111</option>
-              <option value="2">2222222</option>
-              <option value="3">3333333</option>
-              <option value="4">4444444</option>
-            </select>
-          </label>
-        </div>
+        
+        <Field
+          input={ <TextInput type="number" placeholder="Celular" name="cellphone" nativeInputProps={{min: 900000000, max: 999999999}}/> }
+        />
 
-        <div className="field">
-          <label className="field__input field__input--prepend">
-            <div className="field__placeholder"></div>
-            <select>
-              <option></option>
-              <option value="1">111</option>
-              <option value="2">222</option>
-              <option value="3">333</option>
-              <option value="4">444</option>
-            </select>
-          </label>
-          <label className="field__input">
-            <div className="field__placeholder"></div>
-            <input type="text"/>
-          </label>
-        </div> */}
       </form>
     </div>
   );
