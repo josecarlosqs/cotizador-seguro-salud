@@ -36,6 +36,8 @@ function HomeScreen (){
           Acepto la <a className="text--grey" href="https://www.termsandcondiitionssample.com/" rel="noreferrer" target="_blank">Política de Envío de Comunicaciones Comerciales.</a>
         </CheckboxField>
 
+        <button type="submit">Enviar</button>
+
       </form>
     </div>
   );
