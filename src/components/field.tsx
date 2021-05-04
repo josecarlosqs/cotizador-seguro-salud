@@ -22,7 +22,7 @@ export function DateInput({placeholder, name, isPrepend}: InferProps<typeof Date
       let _input = input.current;
       flatpickr(_input, {
         "locale": Spanish,
-        altFormat: 'd m Y',
+        altFormat: 'd/m/Y',
         altInput: true,
         onChange: function(selectedDates, dateStr, instance) {
           (instance.altInput as HTMLInputElement).className += " filled";
@@ -134,12 +134,26 @@ SelectInput.defaultProps = {
   isPrepend: false
 };
 
-
-function Field({input, prepend}: any){
+export function Field({input, prepend}: any){
   return <div className="field">
     {prepend}
     {input}
   </div>
 }
 
-export default Field;
+export function CheckboxField({children, name, className}: InferProps<typeof CheckboxField.propTypes>){
+  return <label className={`checkbox-field ${className}`}>
+    <input type="checkbox" name={name}/>
+    <div className="checkbox-field__box"></div>
+    <div className="gap"></div>
+    <div className="checkbox-field__legend">
+      {children}
+    </div>
+  </label>
+}
+
+CheckboxField.propTypes = {
+  children: PropTypes.node.isRequired,
+  name: PropTypes.string.isRequired,
+  className: PropTypes.string
+}
