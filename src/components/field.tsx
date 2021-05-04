@@ -4,13 +4,17 @@ import IListOption from '../interfaces/IListOption';
 import flatpickr from "flatpickr";
 import { Spanish } from "flatpickr/dist/l10n/es.js"
 
-export function DateInput({placeholder, name, isPrepend}: InferProps<typeof DateInput.propTypes>){
+export function DateInput({placeholder, name, isPrepend, invalid}: InferProps<typeof DateInput.propTypes>){
   const input = useRef<HTMLInputElement>(null);
 
   let fieldInputClassName = 'field__input';
 
   if(!placeholder){
     fieldInputClassName += ' field__input--no-placeholder';
+  }
+
+  if(invalid){
+    fieldInputClassName += ' field__input--invalid';
   }
 
   if(isPrepend){
@@ -38,6 +42,7 @@ export function DateInput({placeholder, name, isPrepend}: InferProps<typeof Date
 }
 
 DateInput.propTypes = {
+  invalid: PropTypes.bool,
   placeholder: PropTypes.string,
   name: PropTypes.string.isRequired,
   isPrepend: PropTypes.bool.isRequired
@@ -47,7 +52,7 @@ DateInput.defaultProps = {
   isPrepend: false
 };
 
-export function TextInput({placeholder, type, name, isPrepend, nativeInputProps}: InferProps<typeof TextInput.propTypes>){
+export function TextInput({placeholder, type, name, isPrepend, invalid, nativeInputProps}: InferProps<typeof TextInput.propTypes>){
 
   const [isFilled, setIsFilled] = useState(false);
 
@@ -55,6 +60,10 @@ export function TextInput({placeholder, type, name, isPrepend, nativeInputProps}
 
   if(!placeholder){
     fieldInputClassName += ' field__input--no-placeholder';
+  }
+
+  if(invalid){
+    fieldInputClassName += ' field__input--invalid';
   }
 
   if(isPrepend){
@@ -81,6 +90,7 @@ export function TextInput({placeholder, type, name, isPrepend, nativeInputProps}
 }
 
 TextInput.propTypes = {
+  invalid: PropTypes.bool,
   placeholder: PropTypes.string,
   type: PropTypes.string.isRequired,  
   name: PropTypes.string.isRequired,
@@ -98,10 +108,11 @@ interface ISelectInputProps{
   placeholder?: string,
   options: Array<IListOption>,
   name: string,
-  isPrepend: boolean
+  isPrepend: boolean,
+  invalid?: boolean
 }
 
-export function SelectInput({placeholder, options, name, isPrepend}: ISelectInputProps){
+export function SelectInput({placeholder, options, name, invalid, isPrepend}: ISelectInputProps){
 
   let fieldInputClassName = 'field__input';
 
@@ -111,6 +122,10 @@ export function SelectInput({placeholder, options, name, isPrepend}: ISelectInpu
 
   if(isPrepend){
     fieldInputClassName += ' field__input--prepend';
+  }
+
+  if(invalid){
+    fieldInputClassName += ' field__input--invalid';
   }
 
   return <label className={fieldInputClassName}>
@@ -123,6 +138,7 @@ export function SelectInput({placeholder, options, name, isPrepend}: ISelectInpu
 
 
 SelectInput.propTypes = {
+  invalid: PropTypes.bool,
   placeholder: PropTypes.string,
   options: PropTypes.array.isRequired,
   name: PropTypes.string.isRequired,

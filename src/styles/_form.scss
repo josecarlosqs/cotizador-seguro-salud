@@ -43,6 +43,7 @@
   }
   
   &__input{
+
     display: flex;
     flex: 1;
     height: 100%;
@@ -63,6 +64,14 @@
         font-size: 1.4375rem;
         transition: font-size 0.2s;
       }
+    }
+
+    &--invalid{
+
+      & #{$self}__placeholder{
+        color: red;
+      }
+
     }
   }
   

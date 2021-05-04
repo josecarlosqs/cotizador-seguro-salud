@@ -7,8 +7,7 @@ import {
   isChecked,
   isRequired,
   isValidCellphone,
-  isValidDocument,
-  isValidName
+  isValidDocument
 } from '../../utils/validate'
 
 import {Field, CheckboxField, SelectInput, TextInput, DateInput} from '../field'
@@ -22,7 +21,7 @@ function HomeScreen (){
     event.preventDefault();
     const fd = new FormData(event.target)
 
-    const invalidFields: any = {};
+    const _invalidFields: any = {};
 
     const documentType: any = fd.get('documentType');
 
@@ -36,15 +35,17 @@ function HomeScreen (){
         case 'tyc': validInput = isChecked(value); break;
       }
 
-      invalidFields[key] = validInput
+      if(!validInput){
+        _invalidFields[key] = true
+      }
     });
 
-    setInvalidFields(invalidFields);
-    // var obj: any = {};
-    // fd.forEach(function(value, key){
-    //     obj[key] = value;
-    // });
-    // console.log( JSON.stringify(obj));
+    setInvalidFields(_invalidFields);
+  
+    if(Object.keys(_invalidFields).length === 0){
+      // Todo good
+      // Hacer el dispatch
+    }
   }
 
   return (
@@ -55,16 +56,16 @@ function HomeScreen (){
       <form action="#" className="form" onSubmit={handleSubmit}>
 
         <Field
-          input={ <TextInput placeholder="Nro. de Documento" name="documentNumber"/> }
-          prepend={ <SelectInput isPrepend options={optionLists.documentTypeList} name="documentType"/> }
+          input={ <TextInput invalid={(invalidFields as any).documentNumber} placeholder="Nro. de Documento" name="documentNumber"/> }
+          prepend={ <SelectInput invalid={(invalidFields as any).documentType} isPrepend options={optionLists.documentTypeList} name="documentType"/> }
         />
 
         <Field
-          input={ <DateInput placeholder="Fecha de nacimiento" name="birthday" /> } />
+          input={ <DateInput invalid={(invalidFields as any).birthday} placeholder="Fecha de nacimiento" name="birthday" /> } />
 
         
         <Field
-          input={ <TextInput type="number" placeholder="Celular" name="cellphone" nativeInputProps={{min: 900000000, max: 999999999}}/> }
+          input={ <TextInput invalid={(invalidFields as any).cellphone} type="number" placeholder="Celular" name="cellphone" nativeInputProps={{min: 900000000, max: 999999999}}/> }
         />
 
         <CheckboxField name="tyc" className="text--grey">
