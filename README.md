@@ -1,6 +1,6 @@
-# Getting Started with Create React App
+# Cotizador de Seguros de Salud
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Avance del cotizador de seguros de salud.
 
 ## Available Scripts
 
