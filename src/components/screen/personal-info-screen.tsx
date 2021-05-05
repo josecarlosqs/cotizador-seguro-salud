@@ -14,7 +14,7 @@ function PersonalInfoScreen (){
   const history = useHistory();
 
   const goto = useCallback((path: string) => {
-    history.push(`${process.env.PUBLIC_URL}${path}`)
+    history.push(path)
   }, [history]);
 
   useLayoutEffect(() => {
