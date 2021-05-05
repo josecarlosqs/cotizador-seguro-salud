@@ -25,16 +25,16 @@ function Layout(){
     <div className="layout__sidebar">
       <ul>
         <li>
-          <Link to="/">Home</Link>
+          <Link to={`${process.env.PUBLIC_URL}/`}>Home</Link>
         </li>
         <li>
-          <Link to="/datos-personales">Datos personales</Link>
+          <Link to={`${process.env.PUBLIC_URL}/datos-personales`}>Datos personales</Link>
         </li>
         <li>
-          <Link to="/elige-seguro">Elige tu seguro</Link>
+          <Link to={`${process.env.PUBLIC_URL}/elige-seguro`}>Elige tu seguro</Link>
         </li>
         <li>
-          <Link to="/gracias">Gracias</Link>
+          <Link to={`${process.env.PUBLIC_URL}/gracias`}>Gracias</Link>
         </li>
       </ul>
     </div>
