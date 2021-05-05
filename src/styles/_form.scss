@@ -49,6 +49,7 @@
     height: 100%;
     align-items: flex-end;
     position: relative;
+    cursor: text;
     
     & #{$self}__placeholder{
       display: flex;
@@ -60,6 +61,7 @@
       padding: 0 1.4375rem;
       align-items: center;
       transition: height 0.2s;
+      color: $grey-1;
       span{
         font-size: 1.4375rem;
         transition: font-size 0.2s;
@@ -69,10 +71,12 @@
     &--invalid{
 
       & #{$self}__placeholder{
-        color: red;
+        color: $red;
       }
 
     }
+
+    
   }
   
   
@@ -96,6 +100,14 @@
       span{
         font-size: 1rem;
       }
+    }
+  }
+
+  
+  &--invalid{
+    border: 2px $red solid;
+    #{$self}__input--prepend{
+      border-right: 2px $red solid;
     }
   }
 }
@@ -128,7 +140,6 @@
     vertical-align: top;
     white-space: pre-line;
     line-height: 1.75rem;
-    font-size: $grey;
     font-size: 1.0625rem;
   }
 
@@ -149,12 +160,12 @@
     left: 0;
     z-index: 0;
 
-    + #{$self}__box{
+    + input + #{$self}__box{
       
       background-color: $grey;
     }
 
-    &:checked + #{$self}__box{
+    &:checked + input + #{$self}__box{
       background-color: $green;
     }
   }

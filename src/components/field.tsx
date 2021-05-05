@@ -151,15 +151,23 @@ SelectInput.defaultProps = {
 };
 
 export function Field({input, prepend}: any){
-  return <div className="field">
+  let fieldClassName = 'field';
+  
+  if(input.props.invalid || prepend?.props?.invalid){
+    fieldClassName += ' field--invalid';
+  }
+
+  return <div className={fieldClassName}>
     {prepend}
     {input}
   </div>
 }
 
 export function CheckboxField({children, name, className}: InferProps<typeof CheckboxField.propTypes>){
+  const [value, setValue] = useState('off');
   return <label className={`checkbox-field ${className}`}>
-    <input type="checkbox" name={name}/>
+    <input type="checkbox" name={name} onChange={evt => setValue(evt.target.checked ? 'on' : 'off')}/>
+    <input type="hidden" name={name} value={value}/>
     <div className="checkbox-field__box"></div>
     <div className="gap"></div>
     <div className="checkbox-field__legend">
@@ -172,4 +180,16 @@ CheckboxField.propTypes = {
   children: PropTypes.node.isRequired,
   name: PropTypes.string.isRequired,
   className: PropTypes.string
+}
+
+export function RadioListField({options, name, label}: InferProps<typeof RadioListField.propTypes>){
+  return <div className="radiolist-field">
+    <p>{label}</p>
+    
+  </div>
+}
+RadioListField.propTypes = {
+  options: PropTypes.array.isRequired,
+  name: PropTypes.string.isRequired,
+  label: PropTypes.string.isRequired
 }
