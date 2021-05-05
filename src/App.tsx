@@ -7,14 +7,8 @@ import {
 import Layout from './components/layout'
 
 function App() {
-  let routerProps: any = {};
-
- if(process.env.ROUTER_BASENAME){
-   routerProps['basename'] = process.env.ROUTER_BASENAME;
- }
-
   return (
-    <Router {...routerProps}>
+    <Router  basename={process.env.PUBLIC_URL}>
       <Layout />
     </Router>
   );
