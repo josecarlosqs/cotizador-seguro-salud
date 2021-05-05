@@ -6,7 +6,7 @@ export default interface IPersonalInfo {
   firstName: null|string,
   lastNamePat: null|string,
   lastNameMat: null|string,
-
+  gender: null|string,
   acceptedTyc: null|boolean,
   acceptedMkt: null|boolean
 }

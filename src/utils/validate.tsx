@@ -11,7 +11,6 @@ export function isValidCellphone(value: any): boolean{
 }
 
 export function isChecked(value: any): boolean{
-  console.log(value)
   return value === 'on';
 }
 

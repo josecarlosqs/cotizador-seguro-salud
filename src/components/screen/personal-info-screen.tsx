@@ -4,7 +4,7 @@ import { useHistory } from "react-router-dom";
 
 import StepIndicator from '../step-indicator'
 
-import {Field, CheckboxField, SelectInput, TextInput, DateInput} from '../field'
+import {Field, SelectInput, TextInput, DateInput} from '../field'
 
 import documentTypeList from '../../json/documentTypeList.json';
 

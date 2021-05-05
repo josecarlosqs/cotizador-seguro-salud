@@ -22,23 +22,24 @@ const initialState: IPersonalInfoState = {
   firstName: null,
   lastNamePat: null,
   lastNameMat: null,
+  gender: null,
 
   acceptedTyc: null,
   acceptedMkt: null
 }
 
 export const fetchPerson = createAsyncThunk('personalInfo/fetchPerson', async () => {
-  let response = await Axios.get('https://randomuser.me/api?nat=es&inc=name,gender,id,dob');
+  let response = await Axios.get('https://randomuser.me/api?nat=es&inc=name,gender,id,dob,phone');
   return response.data.results[0];
 });
 
 export const updatePerson = createAsyncThunk('personalInfo/updatePerson', async () => {
-  let response = await Axios.put('https://randomuser.me/api?nat=es&inc=name,gender,id,dob');
+  let response = await Axios.put('https://randomuser.me/api?nat=es&inc=name,gender,id,dob,phone');
   return response.data;
 });
 
 export const deletePerson = createAsyncThunk('personalInfo/deletePerson', async () => {
-  let response = await Axios.delete('https://randomuser.me/api?nat=es&inc=name,gender,id,dob');
+  let response = await Axios.delete('https://randomuser.me/api?nat=es&inc=name,gender,id,dob,phone');
   return response.data;
 });
 
@@ -55,21 +56,25 @@ const personalInfoSlice = createSlice({
       state.meta.error = false
     })
     .addCase(fetchPerson.fulfilled, (state: IPersonalInfoState, action: AnyAction) => {
-      const personalData: IPersonalInfo = action.payload;
 
       state.meta.loading = false
       state.meta.done = true
       state.meta.error = false
 
-      state.documentNumber = personalData.documentNumber;
-      state.documentType = personalData.documentType;
-      state.birthday = personalData.birthday;
-      state.cellphone = personalData.cellphone;
-      state.firstName = personalData.firstName;
-      state.lastNamePat = personalData.lastNamePat;
-      state.lastNameMat = personalData.lastNameMat;
-      state.acceptedTyc = personalData.acceptedTyc;
-      state.acceptedMkt = personalData.acceptedMkt;
+      state.documentNumber = action.payload.id.value;
+      state.documentType = action.payload.id.name;
+      state.birthday = action.payload.dob.date; // check
+      state.cellphone = action.payload.phone.replace(/[^0-9]/g, '');
+      state.firstName = action.payload.name.title;
+      state.lastNamePat = action.payload.name.first;
+      state.lastNameMat = action.payload.name.last;
+      state.gender = action.payload.gender;
+
+      state.acceptedTyc = true;
+      state.acceptedMkt = true;
+      
+      // state.acceptedTyc = action.payload.acceptedTyc;
+      // state.acceptedMkt = action.payload.acceptedMkt;
     })
     .addCase(fetchPerson.rejected, (state: IPersonalInfoState) => {
       state.meta.loading = false

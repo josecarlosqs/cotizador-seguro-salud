@@ -69,14 +69,10 @@
     }
 
     &--invalid{
-
       & #{$self}__placeholder{
         color: $red;
       }
-
     }
-
-    
   }
   
   
