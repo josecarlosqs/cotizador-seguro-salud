@@ -1,8 +1,8 @@
 {
   "files": {
     "main.css": "/cotizador-seguro-salud/static/css/main.87816c26.chunk.css",
-    "main.js": "/cotizador-seguro-salud/static/js/main.963cb779.chunk.js",
-    "main.js.map": "/cotizador-seguro-salud/static/js/main.963cb779.chunk.js.map",
+    "main.js": "/cotizador-seguro-salud/static/js/main.918d3cf6.chunk.js",
+    "main.js.map": "/cotizador-seguro-salud/static/js/main.918d3cf6.chunk.js.map",
     "runtime-main.js": "/cotizador-seguro-salud/static/js/runtime-main.ae089b8f.js",
     "runtime-main.js.map": "/cotizador-seguro-salud/static/js/runtime-main.ae089b8f.js.map",
     "static/css/2.c79d3bb4.chunk.css": "/cotizador-seguro-salud/static/css/2.c79d3bb4.chunk.css",
@@ -20,6 +20,6 @@
     "static/css/2.c79d3bb4.chunk.css",
     "static/js/2.7967c30a.chunk.js",
     "static/css/main.87816c26.chunk.css",
-    "static/js/main.963cb779.chunk.js"
+    "static/js/main.918d3cf6.chunk.js"
   ]
 }
